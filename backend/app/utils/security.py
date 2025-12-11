@@ -7,13 +7,15 @@ pwd_ctx = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def hash_password(password: str) -> str:
-    # Bcrypt only supports 72 chars → enforce + hash cleanly
-    password = password[:72]  # secure cut
+    # Truncate to 72 bytes (UTF-8) before hashing
+    password = password.encode('utf-8')[:72].decode('utf-8', errors='ignore')
     return pwd_ctx.hash(password)
 
 
 def verify_password(plain: str, hashed: str) -> bool:
-    return pwd_ctx.verify(plain[:72], hashed)
+    # Truncate to 72 bytes (UTF-8) before verification
+    plain = plain.encode('utf-8')[:72].decode('utf-8', errors='ignore')
+    return pwd_ctx.verify(plain, hashed)
 
 
 def create_access_token(data: dict, expires_minutes: int = None) -> str:

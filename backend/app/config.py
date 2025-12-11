@@ -14,5 +14,8 @@ ACCESS_TOKEN_EXPIRE_MINUTES = int(os.environ.get("ACCESS_TOKEN_EXPIRE_MINUTES", 
 HF_TOKEN = os.environ.get("HF_TOKEN", "")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 
+# Mock Mode - set to "true" to use fake responses instead of real APIs
+MOCK_MODE = os.environ.get("MOCK_MODE", "false").lower() == "true"
+
 # Validation
 MIN_TEXT_LENGTH = 20

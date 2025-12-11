@@ -1,14 +1,12 @@
 fastapi
-uvicorn[standard]
 pydantic[email]
 python-dotenv
 psycopg2-binary
 sqlalchemy
 passlib[bcrypt]
-bcrypt
+bcrypt==3.2.0
 python-jose[cryptography]
 email-validator
-watchfiles
 python-multipart
 httpx
 google-generativeai
